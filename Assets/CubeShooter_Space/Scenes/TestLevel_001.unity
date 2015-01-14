@@ -1728,6 +1728,10 @@ Prefab:
       propertyPath: bulletHolder
       value: 
       objectReference: {fileID: 362120664}
+    - target: {fileID: 173764, guid: fa0baf21e35bfed4da7ce7388034005f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa0baf21e35bfed4da7ce7388034005f, type: 2}
   m_RootGameObject: {fileID: 1956903838}
@@ -2336,7 +2340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1956903839
 Transform:
   m_ObjectHideFlags: 0

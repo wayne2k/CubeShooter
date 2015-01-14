@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace RollRoti.CubeShooter
 {
+	[RequireComponent (typeof (Rigidbody))]
 	public class EnemyCubeMovement : MonoBehaviour 
 	{
 		public enum DirectionTypes
@@ -28,6 +29,7 @@ namespace RollRoti.CubeShooter
 		void Awake ()
 		{
 			rigidbody.useGravity = false;
+			rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 		
 		void Start ()
