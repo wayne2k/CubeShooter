@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace RollRoti.CubeShooter
+namespace RollRoti.CubeShooter_Space
 {
 	[RequireComponent (typeof (Rigidbody))]
 	public class EnemyCubeMovement : MonoBehaviour 
