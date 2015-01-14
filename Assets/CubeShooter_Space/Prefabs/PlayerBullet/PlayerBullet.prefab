@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fwdDirectionType: 0
   movementType: 1
-  speed: 40
+  speed: 70
   forceMode: 2
   lifeTime: 5
   _direction: {x: 0, y: 0, z: 0}
