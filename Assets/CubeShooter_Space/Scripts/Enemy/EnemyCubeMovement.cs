@@ -6,59 +6,37 @@ namespace RollRoti.CubeShooter_Space
 	[RequireComponent (typeof (Rigidbody))]
 	public class EnemyCubeMovement : MonoBehaviour 
 	{
-		public enum DirectionTypes
-		{
-			TRANSFORM,
-			VECTOR3
-		}
-		public enum MovementTypes
-		{
-			VELOCITY,
-			FORCE
-		}
-		
-		public DirectionTypes fwdDirectionType = DirectionTypes.TRANSFORM;
-		public MovementTypes movementType = MovementTypes.VELOCITY;
-		
-		public float speed = 20f;
-		public ForceMode forceMode = ForceMode.Impulse;
+		public float speed = 2f;
+		public bool initForwardDirection = false;
+		public Vector3 moveDirection;
 
-		public Vector3 _direction = Vector3.zero;
-		public Vector3 _currentVelocity;
+		[SerializeField] Vector3 _currentVelocity;
 
 		void Awake ()
 		{
-			rigidbody.useGravity = false;
-			rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-		}
-		
-		void Start ()
-		{
-			Initialize ();
+			if (initForwardDirection)
+				moveDirection = transform.forward;		
 		}
 
 		void FixedUpdate ()
 		{
-			_currentVelocity = rigidbody.velocity;
+			_currentVelocity = rigidbody.velocity;		
 		}
-		
-		public void Initialize ()
+
+		public void Move ()
+		{
+			rigidbody.velocity = moveDirection * speed;
+		}
+
+		public void Move (Vector3 direction)
+		{
+			moveDirection = direction;
+			rigidbody.velocity = moveDirection * speed;
+		}
+
+		public void Stop ()
 		{
 			rigidbody.velocity = Vector3.zero;
-
-			if (fwdDirectionType == DirectionTypes.TRANSFORM)
-				_direction = transform.forward;
-			else if (fwdDirectionType == DirectionTypes.VECTOR3)
-				_direction = Vector3.forward;
-			
-			if (movementType == MovementTypes.FORCE) 
-			{
-				rigidbody.AddForce (_direction * speed, forceMode);			
-			}
-			else if (movementType == MovementTypes.VELOCITY) 
-			{
-				rigidbody.velocity = _direction * speed;
-			}
 		}
 	}
 }
