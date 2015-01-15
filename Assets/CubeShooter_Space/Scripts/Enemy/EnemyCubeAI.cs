@@ -30,8 +30,6 @@ namespace RollRoti.CubeShooter_Space
 		{
 			float randomValue = Random.value;
 			stopAtTarget = (randomValue <= chanceOfStopping);
-
-			Debug.Log (randomValue, gameObject);
 		}
 
 		void Update () 

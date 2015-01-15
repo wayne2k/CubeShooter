@@ -11,6 +11,8 @@ GameObject:
   - 54: {fileID: 5480368}
   - 114: {fileID: 11480366}
   - 114: {fileID: 11480368}
+  - 114: {fileID: 11418532}
+  - 114: {fileID: 11413398}
   m_Layer: 10
   m_Name: EnemyCube
   m_TagString: Enemy
@@ -205,6 +207,37 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11413398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddd2c5e1ab467043a590a7e6901753a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  immunityTime: .100000001
+  maxHealth: 1
+  isDead: 0
+  destroyOnDeath: 1
+  deathVfx: {fileID: 0}
+  deathAudioClip: {fileID: 8300000, guid: 72e76810224064300b7d32e8322a5d12, type: 3}
+  _currentHealth: 0
+--- !u!114 &11418532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ab795ef80acaa438ab4fa13ffa035b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 20
+  destructionType: 0
 --- !u!114 &11480366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df92307a8d0ff34cbe6351e78804781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chanceOfStopping: .170000002
   stopAtTarget: 0
   target: {fileID: 0}
   stopDIstance: 5

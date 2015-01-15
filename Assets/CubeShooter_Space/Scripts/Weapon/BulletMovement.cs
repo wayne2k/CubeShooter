@@ -26,7 +26,7 @@ namespace RollRoti.CubeShooter_Space
 
 		public Vector3 _direction = Vector3.zero;
 		public Vector3 _currentVelocity;
-		public float _timer;
+		public float _lifeTimeTimer;
 
 		void Awake ()
 		{
@@ -41,9 +41,9 @@ namespace RollRoti.CubeShooter_Space
 
 		void Update ()
 		{
-			if (_timer > 0.0f) 
+			if (_lifeTimeTimer > 0.0f) 
 			{
-				_timer -= Time.deltaTime;		
+				_lifeTimeTimer -= Time.deltaTime;		
 			}
 			else
 				gameObject.SetActive (false);
@@ -57,7 +57,7 @@ namespace RollRoti.CubeShooter_Space
 		public void Initialize ()
 		{
 			rigidbody.velocity = Vector3.zero;
-			_timer = lifeTime;
+			_lifeTimeTimer = lifeTime;
 
 			if (fwdDirectionType == DirectionTypes.TRANSFORM)
 				_direction = transform.forward;
