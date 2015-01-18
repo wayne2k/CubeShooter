@@ -222,8 +222,8 @@ MonoBehaviour:
   maxHealth: 1
   isDead: 0
   destroyOnDeath: 1
-  deathVfx: {fileID: 0}
-  deathAudioClip: {fileID: 8300000, guid: 72e76810224064300b7d32e8322a5d12, type: 3}
+  deathVfx: {fileID: 100004, guid: a6d58f54ce5934781962a4f887e834f3, type: 2}
+  deathAudioClip: {fileID: 0}
   _currentHealth: 0
 --- !u!114 &11418532
 MonoBehaviour:
