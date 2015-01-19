@@ -27,6 +27,8 @@ namespace RollRoti.CubeShooter_Space
 		
 		float _timer;
 
+		public bool Attack { get; set; }
+
 		void Awake ()
 		{
 			if (bulletHolder == null)
@@ -46,6 +48,10 @@ namespace RollRoti.CubeShooter_Space
 		{
 			if (_timer >= 0f)
 				_timer -= Time.deltaTime;
+
+
+			if (Attack)
+				FireWeapon ();
 		}
 
 		void InstantiateBullet (Transform shotPosition)
