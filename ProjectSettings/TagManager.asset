@@ -5,6 +5,7 @@ TagManager:
   tags:
   - PlayerBullet
   - Enemy
+  - EnemyBullet
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
