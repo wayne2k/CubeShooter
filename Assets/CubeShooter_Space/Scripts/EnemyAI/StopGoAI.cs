@@ -11,12 +11,18 @@ namespace RollRoti.CubeShooter_Space
 		
 		[Range (0.0f, 1.0f)]
 		public float chanceOfStopping = 0.5f;
+		[Range (0.0f, 1.0f)]
+		public float chanceOfAttacking = 0.5f;
+		[Range (0.0f, 1.0f)]
+		public float chanceOfAiming = 0.5f;
 		public Vector2 waitTime = Vector2.one;
+		public Vector2 attackTime = Vector2.one;
 	}
 
 
 	[RequireComponent (typeof (EnemyMovement))]
 	[RequireComponent (typeof (TargetDetector))]
+	[RequireComponent (typeof (AttackController))]
 	public class StopGoAI : MonoBehaviour 
 	{
 		public StopGoAIParams defaultParams;
@@ -26,6 +32,7 @@ namespace RollRoti.CubeShooter_Space
 
 		EnemyMovement _movement;
 		TargetDetector _targetDetector;
+		AttackController _attack;
 		bool _reachedTargetOnce;
 
 		void Awake ()
@@ -38,6 +45,14 @@ namespace RollRoti.CubeShooter_Space
 			if (playerGO != null)
 				settings.detectorParams.target = playerGO.transform;
 			_targetDetector.OverrideParams = settings.detectorParams;
+
+			_attack = GetComponent <AttackController> ();
+			if (playerGO != null) 
+			{
+				_attack.target = playerGO.transform;
+				if (ChanceOfOperation (settings.chanceOfAiming))
+					_attack.AimAtTarget = true;
+			}
 		}
 
 		void Update ()
@@ -58,6 +73,12 @@ namespace RollRoti.CubeShooter_Space
 				Stop ();
 				Invoke ("Move", settings.waitTime.RandomFromRange ());
 			}
+
+			if (ChanceOfOperation (settings.chanceOfAttacking))
+			{
+				StartAttacking ();
+				Invoke ("StopAttacking", settings.attackTime.RandomFromRange ());
+			}
 		}
 
 		bool ChanceOfOperation (float chance)
@@ -73,6 +94,16 @@ namespace RollRoti.CubeShooter_Space
 		void Stop ()
 		{
 			_movement.Stop ();
+		}
+
+		void StartAttacking ()
+		{
+			_attack.Attack = true;
+		}
+
+		void StopAttacking ()
+		{
+			_attack.Attack = false;
 		}
 	}
 }

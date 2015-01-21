@@ -12,6 +12,13 @@ namespace RollRoti.CubeShooter_Space
 		public bool Attack;
 		public bool AimAtTarget;
 
+		Quaternion _initRotation;
+
+		void Awake ()
+		{
+			_initRotation = transform.rotation;
+		}
+
 		void Update ()
 		{
 			if (weapon == null)
@@ -35,7 +42,7 @@ namespace RollRoti.CubeShooter_Space
 			}
 			else
 			{
-				weapon.transform.rotation = Quaternion.identity;
+				weapon.transform.rotation = _initRotation;
 			}
 		}
 

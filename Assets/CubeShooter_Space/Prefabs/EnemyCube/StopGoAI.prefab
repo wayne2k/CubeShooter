@@ -14,7 +14,8 @@ GameObject:
   - 54: {fileID: 5410040}
   - 114: {fileID: 11499046}
   - 114: {fileID: 11499044}
-  - 114: {fileID: 11499042}
+  - 114: {fileID: 11438772}
+  - 114: {fileID: 11438770}
   m_Layer: 10
   m_Name: StopGoAI
   m_TagString: Enemy
@@ -70,6 +71,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &138766
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 438766}
+  m_Layer: 0
+  m_Name: ShotPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &138768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 438768}
+  - 114: {fileID: 11438768}
+  - 114: {fileID: 11438766}
+  m_Layer: 0
+  m_Name: EnemyWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &425148
 Transform:
   m_ObjectHideFlags: 1
@@ -82,6 +115,7 @@ Transform:
   m_Children:
   - {fileID: 425150}
   - {fileID: 425152}
+  - {fileID: 438768}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &425150
@@ -121,6 +155,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425150}
   m_RootOrder: 0
+--- !u!4 &438766
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 438768}
+  m_RootOrder: 0
+--- !u!4 &438768
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 438766}
+  m_Father: {fileID: 425148}
+  m_RootOrder: 2
 --- !u!23 &2325154
 Renderer:
   m_ObjectHideFlags: 1
@@ -203,7 +262,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugControls: 0
   attackButton: Fire2
---- !u!114 &11499042
+--- !u!114 &11438766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138768}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25799ea45c080f74fa62701ea1f87a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireButton: Fire1
+--- !u!114 &11438768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3476c4f21b4946245bf6a6c344801148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultParams:
+    fireRate: .5
+    overrideBulletMover: 1
+    bulletMoverParams:
+      speed: 10
+      forcemode: 2
+      moveOnStart: 1
+    overrideBulletController: 0
+    bulletControllerParams:
+      damagePower: 1
+      lifeTime: 10
+  bulletHolder: {fileID: 0}
+  shotPostions:
+  - {fileID: 438766}
+  bulletPfb: {fileID: 169670, guid: 784893065a3413f4ab3d30e50534b061, type: 2}
+--- !u!114 &11438770
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -216,13 +313,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultParams:
     moveParams:
-      speedRange: {x: 5, y: 5}
+      speedRange: {x: 3, y: 3}
       moveOnStart: 1
     detectorParams:
       target: {fileID: 0}
-      targetGoalRange: {x: 5, y: 10}
+      targetGoalRange: {x: 5, y: 5}
     chanceOfStopping: .5
-    waitTime: {x: 3, y: 3}
+    chanceOfAttacking: .5
+    chanceOfAiming: .5
+    waitTime: {x: 1, y: 1}
+    attackTime: {x: 1, y: 1}
+--- !u!114 &11438772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7989b0e5f8de00148baaf3a85cc2807a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11438768}
+  target: {fileID: 0}
+  Attack: 0
+  AimAtTarget: 0
 --- !u!114 &11499044
 MonoBehaviour:
   m_ObjectHideFlags: 1

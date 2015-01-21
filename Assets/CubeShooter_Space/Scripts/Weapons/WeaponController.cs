@@ -31,6 +31,10 @@ namespace RollRoti.CubeShooter_Space
 
 		void Awake ()
 		{
+			GameObject bulletHolderGO = GameObject.Find ("$BulletHolder");
+			if (bulletHolderGO != null)
+				bulletHolder = bulletHolderGO.transform;
+
 			if (bulletHolder == null)
 				Debug.LogError ("No GameObject to hold bullets.");
 			
