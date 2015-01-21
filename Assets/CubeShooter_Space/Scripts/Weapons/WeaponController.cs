@@ -57,6 +57,7 @@ namespace RollRoti.CubeShooter_Space
 		void InstantiateBullet (Transform shotPosition)
 		{
 			GameObject _bullet = Instantiate (bulletPfb, shotPosition.position, shotPosition.rotation) as GameObject;
+			_bullet.transform.parent = bulletHolder;
 
 			if (settings.overrideBulletMover) 
 			{
