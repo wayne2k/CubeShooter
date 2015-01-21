@@ -41,10 +41,10 @@ namespace RollRoti.CubeShooter_Space
 			}
 		}
 
-		void Start ()
-		{
-			Invoke ("SpawnObject", RandomDelayTime);
-		}
+//		void Start ()
+//		{
+//			Invoke ("SpawnObject", RandomDelayTime);
+//		}
 
 		void SpawnObject ()
 		{
@@ -68,6 +68,17 @@ namespace RollRoti.CubeShooter_Space
 			}
 
 			Invoke ("SpawnObject", RandomDelayTime);
+		}
+
+		void OnEnable() 
+		{
+			if (IsInvoking ("SpawnObject") == false)
+				Invoke ("SpawnObject", RandomDelayTime);
+		}
+
+		void OnDisable() 
+		{
+			CancelInvoke ("SpawnObject");
 		}
 	}
 }
