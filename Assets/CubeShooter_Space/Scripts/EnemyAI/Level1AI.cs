@@ -4,7 +4,7 @@ using System.Collections;
 namespace RollRoti.CubeShooter_Space
 {
 	[System.Serializable]
-	public class StopGoAIParams 
+	public class Level1AIParams 
 	{
 		public EnemyMovementParams moveParams;
 		public TargetDetectorParams detectorParams;
@@ -14,21 +14,25 @@ namespace RollRoti.CubeShooter_Space
 		[Range (0.0f, 1.0f)]
 		public float chanceOfAttacking = 0.5f;
 		[Range (0.0f, 1.0f)]
+		public float chanceOfStartAttack = 0.5f;
+		[Range (0.0f, 1.0f)]
 		public float chanceOfAiming = 0.5f;
+
 		public Vector2 waitTime = Vector2.one;
 		public Vector2 attackTime = Vector2.one;
+		public Vector2 startAttackTime = Vector2.one;
 	}
 
 
 	[RequireComponent (typeof (EnemyMovement))]
 	[RequireComponent (typeof (TargetDetector))]
 	[RequireComponent (typeof (AttackController))]
-	public class StopGoAI : MonoBehaviour 
+	public class Level1AI : MonoBehaviour 
 	{
-		public StopGoAIParams defaultParams;
-		StopGoAIParams _overrideParams;
-		public StopGoAIParams OverrideParams { get { return _overrideParams ; } set { _overrideParams = value;} }
-		StopGoAIParams settings { get { return OverrideParams ?? defaultParams; } }
+		public Level1AIParams defaultParams;
+		Level1AIParams _overrideParams;
+		public Level1AIParams OverrideParams { get { return _overrideParams ; } set { _overrideParams = value;} }
+		Level1AIParams settings { get { return OverrideParams ?? defaultParams; } }
 
 		EnemyMovement _movement;
 		TargetDetector _targetDetector;
@@ -52,6 +56,15 @@ namespace RollRoti.CubeShooter_Space
 				_attack.target = playerGO.transform;
 				if (ChanceOfOperation (settings.chanceOfAiming))
 					_attack.AimAtTarget = true;
+			}
+		}
+
+		void Start ()
+		{
+			if (ChanceOfOperation (settings.chanceOfStartAttack)) 
+			{
+				StartAttacking ();
+				Invoke ("StopAttacking", settings.startAttackTime.RandomFromRange ());
 			}
 		}
 
