@@ -8,6 +8,7 @@ namespace RollRoti.CubeShooter_Space
 	{
 		public float immunityTime = .5f;
 		public int maxHealth = 100;
+		public int scoreToGive = 1;
 		public bool destroyOnDeath = false;
 	}
 
@@ -18,6 +19,7 @@ namespace RollRoti.CubeShooter_Space
 		public HealthControllerParams OverrideParams { get { return _overrideParams ; } set { _overrideParams = value;} }
 		HealthControllerParams settings { get { return OverrideParams ?? defaultParams; } }
 
+		public GameObject explosionEffect;
 
 		[SerializeField] int _currentHealth;
 		float _immunityTimer;
@@ -63,6 +65,12 @@ namespace RollRoti.CubeShooter_Space
 			{
 				IsDead = true;
 				_currentHealth = 0;
+
+				if (ScoreManager.Instance != null)
+					ScoreManager.Instance.score += settings.scoreToGive;
+
+				if (explosionEffect != null)
+					Instantiate (explosionEffect, transform.position, transform.rotation);
 
 				if (settings.destroyOnDeath)
 					Destroy (gameObject);

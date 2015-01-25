@@ -101,8 +101,8 @@ Transform:
   m_Children:
   - {fileID: 932550272}
   - {fileID: 1785282383}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 907063493}
+  m_RootOrder: 1
 --- !u!1 &362120663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1288,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &618894918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 618894920}
+  - 114: {fileID: 618894919}
+  m_Layer: 0
+  m_Name: $ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &618894919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 618894918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b599c35e4f7044b46a7aef60efa2ceb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+--- !u!4 &618894920
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 618894918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &831845073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1354,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &907063492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1381,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 397005237}
+  - {fileID: 322923585}
+  - {fileID: 1290379464}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!1 &932550270
@@ -1479,7 +1521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!114 &1232123615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,7 +1536,9 @@ MonoBehaviour:
   defaultParams:
     immunityTime: .5
     maxHealth: 100
+    scoreToGive: 1
     destroyOnDeath: 1
+  explosionEffect: {fileID: 0}
   _currentHealth: 0
 --- !u!114 &1232123616
 MonoBehaviour:
@@ -1612,7 +1656,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &1290379459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1739,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 907063493}
   m_RootOrder: 2
 --- !u!1 &1785282382
 GameObject:
