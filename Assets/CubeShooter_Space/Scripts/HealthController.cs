@@ -8,9 +8,8 @@ namespace RollRoti.CubeShooter_Space
 	{
 		public float immunityTime = .5f;
 		public int maxHealth = 100;
-		public int scoreToGive = 1;
-		public bool destroyOnDeath = false;
 	}
+
 	[RequireComponent (typeof (HealthBarUI))]
 	public class HealthController : MonoBehaviour 
 	{
@@ -20,9 +19,6 @@ namespace RollRoti.CubeShooter_Space
 		public HealthControllerParams settings { get { return OverrideParams ?? defaultParams; } }
 
 		public HealthBarUI healthBar;
-		public GameObject explosionVFX;
-		public GameObject damageVFX;
-
 
 		[SerializeField] int _currentHealth;
 		float _immunityTimer;
@@ -40,6 +36,8 @@ namespace RollRoti.CubeShooter_Space
 			healthBar = GetComponent <HealthBarUI> ();
 			_currentHealth = settings.maxHealth;
 			_immunityTimer = settings.immunityTime;
+
+			IsDead = false;
 		}
 
 		void Start ()
@@ -61,7 +59,7 @@ namespace RollRoti.CubeShooter_Space
 
 		void OnTakeDamage (int damage)
 		{
-			if (Immune) 
+			if (Immune || IsDead) 
 			{
 				return;
 			}
@@ -75,22 +73,11 @@ namespace RollRoti.CubeShooter_Space
 			{
 				IsDead = true;
 				_currentHealth = 0;
-
-				if (ScoreManager.Instance != null)
-					ScoreManager.Instance.score += settings.scoreToGive;
-
-				DeathVFX ();
-
-				if (settings.destroyOnDeath)
-					Destroy (gameObject);
 			}
-			else
-			{
-				DamageVFX ();
-			}
-
 
 			healthBar.CurrentHealth (_currentHealth);
+
+			SendMessage ("TookDamage", SendMessageOptions.DontRequireReceiver);
 		}
 
 		public void TakeDamage (int damage)
@@ -98,21 +85,9 @@ namespace RollRoti.CubeShooter_Space
 			OnTakeDamage (damage);
 		}
 
-		public void TakeDamage (int damage, Collider col)
+		public void TakeDamageFull ()
 		{
-			OnTakeDamage (damage);
-		}
-
-		public void DeathVFX ()
-		{
-			if (explosionVFX != null)
-				Instantiate (explosionVFX, transform.position, transform.rotation);
-		}
-
-		public void DamageVFX ()
-		{
-			if (damageVFX != null)
-				Instantiate (damageVFX, transform.position, transform.rotation);
+			OnTakeDamage (settings.maxHealth);
 		}
 	}
 }

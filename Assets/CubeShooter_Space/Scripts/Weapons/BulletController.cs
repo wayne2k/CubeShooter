@@ -23,10 +23,10 @@ namespace RollRoti.CubeShooter_Space
 			Destroy (gameObject, settings.lifeTime);
 		}
 
-		void OnTriggerEnter (Collider col)
+		void OnTriggerEnter (Collider other)
 		{
 			// Note: GetComponentInParent because Collider is on on the parent gameObject.
-			HealthController _health = col.gameObject.GetComponentInParent <HealthController> ();
+			HealthController _health = other.gameObject.GetComponentInParent <HealthController> ();
 
 			if (_health != null) 
 			{

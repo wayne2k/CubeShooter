@@ -32,7 +32,7 @@ namespace RollRoti.CubeShooter_Space
 		public Level1AIParams defaultParams;
 		Level1AIParams _overrideParams;
 		public Level1AIParams OverrideParams { get { return _overrideParams ; } set { _overrideParams = value;} }
-		Level1AIParams settings { get { return OverrideParams ?? defaultParams; } }
+		public Level1AIParams settings { get { return OverrideParams ?? defaultParams; } }
 
 		EnemyMovement _movement;
 		TargetDetector _targetDetector;
@@ -93,7 +93,7 @@ namespace RollRoti.CubeShooter_Space
 				Invoke ("StopAttacking", settings.attackTime.RandomFromRange ());
 			}
 		}
-
+	
 		bool ChanceOfOperation (float chance)
 		{
 			float chanceValue = Random.value;
