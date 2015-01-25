@@ -11,15 +11,18 @@ namespace RollRoti.CubeShooter_Space
 		public int scoreToGive = 1;
 		public bool destroyOnDeath = false;
 	}
-
+	[RequireComponent (typeof (HealthBarUI))]
 	public class HealthController : MonoBehaviour 
 	{
 		public HealthControllerParams defaultParams;
 		HealthControllerParams _overrideParams;
 		public HealthControllerParams OverrideParams { get { return _overrideParams ; } set { _overrideParams = value;} }
-		HealthControllerParams settings { get { return OverrideParams ?? defaultParams; } }
+		public HealthControllerParams settings { get { return OverrideParams ?? defaultParams; } }
 
-		public GameObject explosionEffect;
+		public HealthBarUI healthBar;
+		public GameObject explosionVFX;
+		public GameObject damageVFX;
+
 
 		[SerializeField] int _currentHealth;
 		float _immunityTimer;
@@ -34,8 +37,14 @@ namespace RollRoti.CubeShooter_Space
 
 		void Awake ()
 		{
+			healthBar = GetComponent <HealthBarUI> ();
 			_currentHealth = settings.maxHealth;
 			_immunityTimer = settings.immunityTime;
+		}
+
+		void Start ()
+		{
+			healthBar.InitHealthBar (settings.maxHealth, _currentHealth);
 		}
 
 		void Update ()
@@ -61,6 +70,7 @@ namespace RollRoti.CubeShooter_Space
 
 			_currentHealth -= damage;
 
+
 			if (_currentHealth <= 0) 
 			{
 				IsDead = true;
@@ -69,12 +79,18 @@ namespace RollRoti.CubeShooter_Space
 				if (ScoreManager.Instance != null)
 					ScoreManager.Instance.score += settings.scoreToGive;
 
-				if (explosionEffect != null)
-					Instantiate (explosionEffect, transform.position, transform.rotation);
+				DeathVFX ();
 
 				if (settings.destroyOnDeath)
 					Destroy (gameObject);
 			}
+			else
+			{
+				DamageVFX ();
+			}
+
+
+			healthBar.CurrentHealth (_currentHealth);
 		}
 
 		public void TakeDamage (int damage)
@@ -85,6 +101,18 @@ namespace RollRoti.CubeShooter_Space
 		public void TakeDamage (int damage, Collider col)
 		{
 			OnTakeDamage (damage);
+		}
+
+		public void DeathVFX ()
+		{
+			if (explosionVFX != null)
+				Instantiate (explosionVFX, transform.position, transform.rotation);
+		}
+
+		public void DamageVFX ()
+		{
+			if (damageVFX != null)
+				Instantiate (damageVFX, transform.position, transform.rotation);
 		}
 	}
 }
