@@ -25,8 +25,8 @@ namespace RollRoti.CubeShooter_Space
 
 		void Update ()
 		{
-			_h = Input.GetAxis (horizontalBtn);
-			_v = Input.GetAxis (verticalBtn);
+//			_h = Input.GetAxis (horizontalBtn);
+//			_v = Input.GetAxis (verticalBtn);
 
 			_attack.Attack = Input.GetButton (Fire1Btn);
 			_attack.AimAtTarget = Input.GetButton (Fire2Btn);
@@ -34,6 +34,9 @@ namespace RollRoti.CubeShooter_Space
 
 		void FixedUpdate ()
 		{
+			_h = Input.GetAxis (horizontalBtn);
+			_v = Input.GetAxis (verticalBtn);
+
 			_movement.Move (_h, _v);
 		}
 	}

@@ -35,6 +35,7 @@ GameObject:
   - 114: {fileID: 11423904}
   - 114: {fileID: 11485274}
   - 114: {fileID: 11485272}
+  - 114: {fileID: 11416282}
   m_Layer: 10
   m_Name: MoveForwardAI
   m_TagString: Enemy
@@ -310,6 +311,23 @@ TrailRenderer:
       rgba: 4278190335
   m_MinVertexDistance: .100000001
   m_Autodestruct: 0
+--- !u!114 &11416282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2cf47761729b545a01eb09ef3ad48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreToGive: 1
+  damageToGive: 1
+  destroyOnDeath: 1
+  explosionVFX: {fileID: 100012, guid: 160925a6fe2664f2a978566b819f0af0, type: 2}
+  damageVFX: {fileID: 100004, guid: a6d58f54ce5934781962a4f887e834f3, type: 2}
+  _handledDeath: 0
 --- !u!114 &11423904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,10 +458,7 @@ MonoBehaviour:
   defaultParams:
     immunityTime: .5
     maxHealth: 2
-    scoreToGive: 1
-    destroyOnDeath: 0
   healthBar: {fileID: 0}
-  explosionEffect: {fileID: 0}
   _currentHealth: 0
 --- !u!114 &11485274
 MonoBehaviour:
