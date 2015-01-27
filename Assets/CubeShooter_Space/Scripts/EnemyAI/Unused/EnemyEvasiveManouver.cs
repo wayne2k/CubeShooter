@@ -59,7 +59,7 @@ namespace RollRoti.CubeShooter_Space
 				yield return new WaitForSeconds (Random.Range (settings.maneuverWait.x, settings.maneuverWait.y));
 			}
 
-			Evading = false;
+//			Evading = false;
 		}
 
 		void FixedUpdate ()
