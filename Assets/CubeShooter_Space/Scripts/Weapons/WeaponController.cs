@@ -24,7 +24,8 @@ namespace RollRoti.CubeShooter_Space
 		public Transform bulletHolder;
 		public List<Transform> shotPostions;
 		public GameObject bulletPfb;
-		
+		public AudioClip weaponFireClip;
+
 		float _timer;
 
 		public bool Attack { get; set; }
@@ -88,6 +89,12 @@ namespace RollRoti.CubeShooter_Space
 				foreach (Transform shotPos in shotPostions)
 				{
 					InstantiateBullet (shotPos);
+					if (SoundManager.Instance != null && SoundManager.Instance.sfx.IsActive && weaponFireClip != null && audio != null)
+					{
+						audio.Stop ();
+						audio.clip = weaponFireClip;
+						audio.Play ();
+					}
 				}
 			}
 		}

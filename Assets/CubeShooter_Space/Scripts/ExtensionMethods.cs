@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class ExtensionMethods
+namespace RollRoti.HelperLib
 {
-	public static float RandomFromRange (this Vector2 value) 
+	public static class ExtensionMethods
 	{
-		return Random.Range (value.x, value.y);
+		public static float RandomFromRange (this Vector2 value) 
+		{
+			return Random.Range (value.x, value.y);
+		}
+
+		public static bool ToBool (this int value)
+		{
+			return (value == 1) ? true : false;
+		}
+
+		public static int ToInt (this bool value)
+		{
+			return (value) ? 1 : 0;
+		}
 	}
 }
