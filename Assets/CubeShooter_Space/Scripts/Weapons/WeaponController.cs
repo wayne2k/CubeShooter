@@ -89,7 +89,7 @@ namespace RollRoti.CubeShooter_Space
 				foreach (Transform shotPos in shotPostions)
 				{
 					InstantiateBullet (shotPos);
-					if (SoundManager.Instance != null && SoundManager.Instance.sfx.IsActive && weaponFireClip != null && audio != null)
+					if (SoundManager.Instance != null && SoundManager.Instance.SfxActive && weaponFireClip != null && audio != null)
 					{
 						audio.Stop ();
 						audio.clip = weaponFireClip;

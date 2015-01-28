@@ -11,13 +11,8 @@ namespace RollRoti.CubeShooter_Space
 		public string saveKey = "sfx";
 
 		public bool IsActive { 
-			get {
-				return _toggle.isOn;			
-			}
-			set
-			{
-				_toggle.isOn = value;			
-			}
+			get { return (_toggle == null) ? false :_toggle.isOn; }
+			set { if (_toggle != null) _toggle.isOn = value; }
 		}
 
 		Toggle _toggle;

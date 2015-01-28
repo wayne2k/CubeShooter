@@ -11,6 +11,9 @@ namespace RollRoti.CubeShooter_Space
 		public ToggleButtonState sfx;
 		public ToggleButtonState music;
 
+		public bool SfxActive { get { return (sfx == null) ? false : sfx.IsActive; } }
+		public bool MusicActive { get { return (music == null) ? false : music.IsActive; } }
+
 		void Awake ()
 		{
 			Instance = this;
@@ -18,10 +21,10 @@ namespace RollRoti.CubeShooter_Space
 
 		void LateUpdate ()
 		{
-			if (music.IsActive && audio.isPlaying == false) {
+			if (MusicActive && audio.isPlaying == false) {
 				audio.Play ();			
 			}
-			else if (music.IsActive == false && audio.isPlaying) {
+			else if (MusicActive == false && audio.isPlaying) {
 				audio.Stop ();			
 			}
 		}
