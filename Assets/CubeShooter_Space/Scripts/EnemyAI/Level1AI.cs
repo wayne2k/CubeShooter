@@ -38,6 +38,7 @@ namespace RollRoti.CubeShooter_Space
 		EnemyMovement _movement;
 		TargetDetector _targetDetector;
 		AttackController _attack;
+		EnemyCubeAC _anim;
 		bool _reachedTargetOnce;
 
 		void Awake ()
@@ -46,18 +47,15 @@ namespace RollRoti.CubeShooter_Space
 			_movement.OverrideParams = settings.moveParams;
 
 			_targetDetector = GetComponent <TargetDetector> ();
-			GameObject playerGO = GameObject.FindWithTag ("Player");
-			if (playerGO != null)
-				settings.detectorParams.target = playerGO.transform;
+			settings.detectorParams.target = (GameManager.Instance != null) ? GameManager.Instance.Player_T : null;
 			_targetDetector.OverrideParams = settings.detectorParams;
 
 			_attack = GetComponent <AttackController> ();
-			if (playerGO != null) 
-			{
-				_attack.target = playerGO.transform;
-				if (ChanceOfOperation (settings.chanceOfAiming))
-					_attack.AimAtTarget = true;
-			}
+			_attack.target = (GameManager.Instance != null) ? GameManager.Instance.Player_T : null;
+			if (ChanceOfOperation (settings.chanceOfAiming))
+				_attack.AimAtTarget = true;
+
+			_anim = GetComponent <EnemyCubeAC> ();
 		}
 
 		void Start ()
@@ -113,11 +111,13 @@ namespace RollRoti.CubeShooter_Space
 		void StartAttacking ()
 		{
 			_attack.Attack = true;
+			_anim.Attack = true;
 		}
 
 		void StopAttacking ()
 		{
 			_attack.Attack = false;
+			_anim.Attack = false;
 		}
 	}
 }

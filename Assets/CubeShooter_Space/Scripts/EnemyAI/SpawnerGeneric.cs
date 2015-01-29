@@ -6,7 +6,6 @@ namespace RollRoti.CubeShooter_Space
 {
 	public class SpawnerGeneric : MonoBehaviour 
 	{
-		public Transform spawnObjHolder;
 		public float spawnRadius = 3f;
 		public float delayTimeMin = 1f;
 		public float delayTimeMax = 5f;
@@ -63,7 +62,7 @@ namespace RollRoti.CubeShooter_Space
 				if (go != null) 
 				{
 					GameObject obj = Instantiate (go, RandomPointInSphere, transform.rotation) as GameObject;
-					obj.transform.parent = spawnObjHolder;
+					obj.transform.parent = (GameManager.Instance != null) ? GameManager.Instance.EnemyHolder_T : null;
 				}
 			}
 

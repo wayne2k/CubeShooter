@@ -1898,6 +1898,7 @@ MonoBehaviour:
   shotPostions:
   - {fileID: 944111296}
   bulletPfb: {fileID: 165804, guid: 0e0f95221ecc88e46bf97b656539c11c, type: 2}
+  weaponFireClip: {fileID: 0}
 --- !u!1 &1232494466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,7 +1931,7 @@ MonoBehaviour:
   delayTimeMin: 1
   delayTimeMax: 5
   objPfbs:
-  - {fileID: 125148, guid: 2d24d6f1703e7b74690c03ebb15aa5e1, type: 2}
+  - {fileID: 198952, guid: 0818651951e50154286d8955f366622a, type: 2}
   spawnWaveMin: 1
   spawnWaveMax: 5
 --- !u!4 &1232494468
@@ -2129,6 +2130,10 @@ Prefab:
     - target: {fileID: 11444410, guid: bc684bc3ba6abfc4c9b2b1b116d978ac, type: 2}
       propertyPath: defaultParams.maxHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 128094, guid: bc684bc3ba6abfc4c9b2b1b116d978ac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc684bc3ba6abfc4c9b2b1b116d978ac, type: 2}
@@ -2386,7 +2391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1846394615
 Transform:
   m_ObjectHideFlags: 0
@@ -2465,6 +2470,7 @@ MonoBehaviour:
   verticalBtn: Vertical
   Fire1Btn: Fire1
   Fire2Btn: Fire2
+  EscapeBtn: Cancel
 --- !u!114 &1846394620
 MonoBehaviour:
   m_ObjectHideFlags: 0

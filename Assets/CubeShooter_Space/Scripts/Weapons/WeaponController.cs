@@ -21,7 +21,6 @@ namespace RollRoti.CubeShooter_Space
 		public WeaponControllerParams OverrideParams { get { return _overrideParams; } set { _overrideParams = value; } }
 		WeaponControllerParams settings { get { return OverrideParams ?? defaultParams; } }
 
-		public Transform bulletHolder;
 		public List<Transform> shotPostions;
 		public GameObject bulletPfb;
 		public AudioClip weaponFireClip;
@@ -32,13 +31,6 @@ namespace RollRoti.CubeShooter_Space
 
 		void Awake ()
 		{
-			GameObject bulletHolderGO = GameObject.Find ("$BulletHolder");
-			if (bulletHolderGO != null)
-				bulletHolder = bulletHolderGO.transform;
-
-			if (bulletHolder == null)
-				Debug.LogError ("No GameObject to hold bullets.");
-			
 			if (shotPostions.Count <= 0)
 				Debug.LogError ("No Shot Positions set.");
 			
@@ -62,7 +54,7 @@ namespace RollRoti.CubeShooter_Space
 		void InstantiateBullet (Transform shotPosition)
 		{
 			GameObject _bullet = Instantiate (bulletPfb, shotPosition.position, shotPosition.rotation) as GameObject;
-			_bullet.transform.parent = bulletHolder;
+			_bullet.transform.parent = (GameManager.Instance != null) ? GameManager.Instance.BulletHolder_T : null;
 
 			if (settings.overrideBulletMover) 
 			{

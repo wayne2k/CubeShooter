@@ -37,7 +37,7 @@ GameObject:
   - 114: {fileID: 11485272}
   - 114: {fileID: 11416282}
   m_Layer: 10
-  m_Name: MoveForwardAI
+  m_Name: AllBehaviours_L1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2100e344454bc9499cd476f501a8cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 20
+  lifeTime: 15
   destructionType: 0
 --- !u!114 &11425152
 MonoBehaviour:
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125148}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3485a2aca465d2d47a9025b256324c15, type: 3}
   m_Name: 
@@ -459,7 +459,6 @@ MonoBehaviour:
     bulletControllerParams:
       damagePower: 1
       lifeTime: 5
-  bulletHolder: {fileID: 0}
   shotPostions:
   - {fileID: 438766}
   bulletPfb: {fileID: 169670, guid: 784893065a3413f4ab3d30e50534b061, type: 2}
@@ -483,12 +482,12 @@ MonoBehaviour:
       target: {fileID: 0}
       targetGoalRange: {x: 5, y: 10}
     chanceOfStopping: .5
-    chanceOfAttacking: .400000006
-    chanceOfStartAttack: 0
-    chanceOfAiming: .340000004
+    chanceOfAttacking: .699999988
+    chanceOfStartAttack: .5
+    chanceOfAiming: .699999988
     waitTime: {x: 2, y: 5}
-    attackTime: {x: 1.5, y: 1.5}
-    startAttackTime: {x: 1.5, y: 1.5}
+    attackTime: {x: 1, y: 1}
+    startAttackTime: {x: 1, y: 1}
 --- !u!114 &11438772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -516,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultParams:
-    immunityTime: .5
+    immunityTime: .200000003
     maxHealth: 2
   healthBar: {fileID: 0}
   _currentHealth: 0

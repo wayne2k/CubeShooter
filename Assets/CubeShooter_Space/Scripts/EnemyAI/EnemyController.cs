@@ -31,18 +31,21 @@ namespace RollRoti.CubeShooter_Space
 
 		void OnTriggerEnter(Collider other)
 		{
-			HealthController player = other.GetComponentInParent <HealthController> ();
-//			Debug.Log ("Player is null: " + player == null);
-
-			if (player != null) 
+//			if (other.tag == "Player")
 			{
-//				Debug.Log ("Damage to give: " + damageToGive);
-			
-				player.TakeDamage (damageToGive);			
-			
-				DeathVFX ();
-				Destroy (gameObject);
-//				Debug.Log (gameObject.name + " Destroy on Contact with " + other.gameObject.name);
+				HealthController player = other.GetComponentInParent <HealthController> ();
+	//			Debug.Log ("Player is null: " + player == null);
+
+				if (player != null) 
+				{
+	//				Debug.Log ("Damage to give: " + damageToGive);
+				
+					player.TakeDamage (damageToGive);			
+				
+					DeathVFX ();
+					Destroy (gameObject);
+	//				Debug.Log (gameObject.name + " Destroy on Contact with " + other.gameObject.name);
+				}
 			}
 		}
 
@@ -63,13 +66,19 @@ namespace RollRoti.CubeShooter_Space
 		void DeathVFX ()
 		{
 			if (explosionVFX != null)
-				Instantiate (explosionVFX, transform.position, transform.rotation);
+			{
+				GameObject go = Instantiate (explosionVFX, transform.position, transform.rotation) as GameObject;
+				go.transform.parent = (GameManager.Instance != null) ? GameManager.Instance.ExplosionsHolder_T : null;
+			}
 		}
 		
 		void DamageVFX ()
 		{
 			if (damageVFX != null)
-				Instantiate (damageVFX, transform.position, transform.rotation);
+			{
+				GameObject go = Instantiate (damageVFX, transform.position, transform.rotation) as GameObject;
+				go.transform.parent = (GameManager.Instance != null) ? GameManager.Instance.ExplosionsHolder_T : null;
+			}
 		}
 
 		void TookDamage ()

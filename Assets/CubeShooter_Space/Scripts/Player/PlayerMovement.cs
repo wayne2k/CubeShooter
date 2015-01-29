@@ -52,6 +52,9 @@ namespace RollRoti.CubeShooter_Space
 		
 		public void Move (float h, float v)
 		{
+			_initialPostiion = transform.position;
+
+
 			Vector3 newPosition = new Vector3 (h * InvertedControlsX, v * InvertedControlsY, _initialPostiion.z).normalized;
 			
 			_rb.MovePosition (rigidbody.position + newPosition * speed * Time.fixedDeltaTime);

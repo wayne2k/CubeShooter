@@ -31,6 +31,8 @@ namespace RollRoti.CubeShooter_Space
 
 		public bool IsDead { get; private set; }
 
+		public int CurrentHealth { get { return _currentHealth; } }
+
 		void Awake ()
 		{
 			healthBar = GetComponent <HealthBarUI> ();
@@ -88,6 +90,17 @@ namespace RollRoti.CubeShooter_Space
 		public void TakeDamageFull ()
 		{
 			OnTakeDamage (settings.maxHealth);
+		}
+
+		public void IncreaseHealth (int healthPower)
+		{
+			if (IsDead)
+				return;
+
+			_currentHealth += healthPower;
+			_currentHealth = Mathf.Min (_currentHealth, settings.maxHealth);
+
+			healthBar.CurrentHealth (_currentHealth);
 		}
 	}
 }
